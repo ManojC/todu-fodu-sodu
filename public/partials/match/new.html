@@ -1,0 +1,75 @@
+<div class="col-lg-3 col-lg-offset-1">
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h3>Add New Match</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label for="email-id">Team 1</label>
+            <input id="email-id" type="text" class="form-control" ng-model="ctrl.model.teamOne">
+        </div>
+    </div>
+    <div class="row mts">
+        <div class="col-lg-12">
+            <label for="email-id">Team 2</label>
+            <input id="email-id" type="text" class="form-control" ng-model="ctrl.model.teamTwo">
+        </div>
+    </div>
+    <div class="row mts">
+        <div class="col-lg-12">
+            <label for="email-id">Venue</label>
+            <input id="email-id" type="text" class="form-control" ng-model="ctrl.model.venue">
+        </div>
+    </div>
+    <div class="row mts">
+        <div class="col-lg-12">
+            <label for="email-id">Date</label>
+            <input id="email-id" type="text" class="form-control" ng-model="ctrl.model.date">
+        </div>
+    </div>
+    <div class="row mtl">
+        <div class="col-lg-12">
+            <button class=" btn btn-primary col-lg-12" ng-click="ctrl.addMatch()">Add New Match</button>
+        </div>
+    </div>
+</div>
+<div class="col-lg-6 col-lg-offset-1">
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h3>Added Mtaches</h3>
+        </div>
+    </div>
+    <div class="row mts text-center" ng-hide="ctrl.collection.length">
+        <h3>No matches added yet!</h3>
+    </div>
+    <div class="row mts" ng-show="ctrl.collection.length">
+        <div class="col-lg-12">
+            <table class="table table-hover table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Team 1</th>
+                        <th class="text-center">Team 2</th>
+                        <th class="text-center">Venue</th>
+                        <th class="text-center">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="model in ctrl.collection">
+                        <td>{{$index+1}}</td>
+                        <td>{{model.teamOne}}</td>
+                        <td>{{model.teamTwo}}</td>
+                        <td>{{model.venue}}</td>
+                        <td>{{model.date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" ng-show="ctrl.collection.length">
+        <div class="col-lg-12">
+            <button class="btn btn-primary col-lg-4 col-lg-offset-8" ng-click="ctrl.saveMatches()">Save List</button>
+        </div>
+    </div>
+</div>

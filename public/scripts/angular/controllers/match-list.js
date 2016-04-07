@@ -6,13 +6,33 @@
     app.controller('MatchListController', ['KunduFactory', '$location', '$scope', function(kunduFactory, $location, $scope) {
 
         var self = this;
-        self.matches = [];
+        self.model = {};
+        self.collection = [];
 
-        kunduFactory.getAllMatches(function(data) {
-            self.matches = data;
-        });
+        self.getAllMatches = function() {
 
-        self.match = 'MI v/s RR';
+            kunduFactory.getAllMatches(function(data) {
+                if (data)
+                    self.collection = data;
+            });
+        }
+
+        self.addMatch = function() {
+            self.collection.push(self.model);
+            self.model = {};
+        };
+
+        self.saveMatches = function() {
+            if (self.collection)
+                kunduFactory.saveMatches(self.collection, function(data) {
+                    console.log(data);
+                    if (data) {
+                        self.collection = [];
+                        self.model = {};
+                    }
+                });
+        };
+
     }]);
 
 })(window.app = window.app || {});

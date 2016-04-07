@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* get all matches. */
 router.get('/all', function(req, res, next) {
-    res.json({ Data: ['asds', 'asd'] });
+    res.json({ Data: req.session.matches });
 });
 
 /* get today's matches */
@@ -24,7 +24,16 @@ router.get('/:id', function(req, res) {
 
 /* add matches */
 router.post('/add', function(req, res) {
-    res.end();
+
+    if (!req.session.matches)
+        req.session.matches = [];
+
+    if (req.body && req.body.length) {
+        for (var i = 0; i < req.body.length; i++) {
+            req.session.matches.push(req.body[i]);
+        };
+    }
+    res.json({ Data: req.session.matches });
 });
 
 /* update match */
